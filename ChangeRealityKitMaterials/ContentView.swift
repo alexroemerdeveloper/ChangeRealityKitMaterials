@@ -21,9 +21,13 @@ struct ContentView : View {
     
     init() {
         let boxAnchor = try! Experience.loadBox()
+        let starAnchor = try! Experience.loadStar()
+
         var models = [ModelEntity]()
         boxAnchor.getModelEntitiesInDescendants(models: &models)
+        starAnchor.getModelEntitiesInDescendants(models: &models)
         arView.scene.anchors.append(boxAnchor)
+        arView.scene.anchors.append(starAnchor)
         self.models = models
     }
     
