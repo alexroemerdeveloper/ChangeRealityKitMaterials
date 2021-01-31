@@ -9,7 +9,9 @@ import SwiftUI
 import RealityKit
 
 extension ModelEntity {
-    
+    /*
+     Every ModelEntity in RealityKit has a ModelComponent property. If it exists, as it is an optional and may be nil, this component contains both the mesh and the materials array. This is all we need to modify in order to change materials, although we first need to find all of the ModelEntity instances in the hierarchy.
+     */
     func changeMaterial(atIndex index: Int, toColour colour: Color) {
         assert(model?.materials.indices.contains(index) ?? false, "Index out of range")
         model?.materials[index] = SimpleMaterial(color: UIColor(colour), isMetallic: false)
@@ -30,6 +32,9 @@ extension Entity {
         }
     }
     
+    /*
+     Every ModelEntity in RealityKit has a ModelComponent property. If it exists, as it is an optional and may be nil, this component contains both the mesh and the materials array. This is all we need to modify in order to change materials, although we first need to find all of the ModelEntity instances in the hierarchy.
+     */
     func getModelEntitiesInDescendants(models: inout [ModelEntity]) {
         self.addIfModelEntity(models: &models)
         for child in self.children {
